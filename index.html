@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZaloFlow — Tải về cho Windows & Mac</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --surface: #ffffff;
+      --text-primary: #1d1d1f;
+      --text-secondary: #86868b;
+      --border: rgba(0, 0, 0, 0.08);
+      --apple-blue: #0071e3;
+      --apple-blue-hover: #0077ed;
+      --apple-dark: #1d1d1f;
+      --apple-dark-hover: #333336;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* NAV */
+    .nav {
+      height: 52px;
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav-container {
+      max-width: 980px;
+      height: 100%;
+      margin: 0 auto;
+      padding: 0 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .brand-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: var(--apple-blue);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-meta {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    /* MAIN */
+    .main {
+      max-width: 980px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 64px 22px 56px;
+      text-align: center;
+    }
+
+    .app-squircle {
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 24px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, #0077ed 0%, #005bb5 100%);
+      box-shadow: 0 12px 28px rgba(0, 113, 227, 0.22), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    h1 {
+      font-size: clamp(30px, 4.2vw, 44px);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      color: var(--text-primary);
+      max-width: 780px;
+      margin: 0 auto 14px;
+    }
+
+    .subtitle {
+      font-size: clamp(17px, 2.2vw, 21px);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin: 0 auto 48px;
+      line-height: 1.45;
+    }
+
+    /* CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 720px;
+      margin: 0 auto 56px;
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 38px 32px 34px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+    }
+
+    .card.active-os {
+      border-color: rgba(0, 113, 227, 0.35);
+    }
+
+    .os-logo {
+      width: 44px;
+      height: 44px;
+      margin-bottom: 18px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card h2 {
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .card-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      max-width: 240px;
+      height: 46px;
+      border-radius: 980px;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      cursor: pointer;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background-color: var(--apple-blue);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--apple-blue-hover);
+    }
+
+    .btn-dark {
+      background-color: var(--apple-dark);
+      color: #fff;
+    }
+
+    .btn-dark:hover {
+      background-color: var(--apple-dark-hover);
+    }
+
+    .file-note {
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    /* STEPS */
+    .steps {
+      max-width: 720px;
+      margin: 0 auto;
+      padding-top: 36px;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      text-align: left;
+    }
+
+    .step-item {
+      padding: 4px;
+    }
+
+    .step-num {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--apple-blue);
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    .step-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .step-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    /* NOTE BOX */
+    .trust-box {
+      max-width: 720px;
+      margin: 28px auto 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px 24px;
+      text-align: left;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .trust-col h3 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .trust-col p {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* FOOTER */
+    .footer {
+      padding: 28px 22px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(29, 29, 31, 0.92);
+      backdrop-filter: blur(12px);
+      color: #fff;
+      padding: 12px 22px;
+      border-radius: 980px;
+      font-size: 13px;
+      font-weight: 500;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+      display: none;
+      z-index: 100;
+    }
+
+    @media (max-width: 640px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+      .steps {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .trust-box {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .main {
+        padding: 42px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <span class="brand-dot">Z</span>
+        <span>ZaloFlow</span>
+      </a>
+      <div class="nav-meta" id="versionLabel">Phiên bản 4.2.4</div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="app-squircle">Z</div>
+    <h1>Phần mềm quản lý tương tác, nhiều nick Zalo</h1>
+    <p class="subtitle">
+      Tự động hóa kết bạn, nhắn tin và khai thác nhóm trên nhiều tài khoản Zalo cùng lúc.
+    </p>
+
+    <div class="cards">
+      <!-- WINDOWS -->
+      <div class="card active-os" id="cardWin">
+        <div class="os-logo">
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+          </svg>
+        </div>
+        <h2>Windows</h2>
+        <p class="card-desc">Windows 10 hoặc 11 (64-bit)</p>
+        <a
+          href="https://github.com/ducminh8865-glitch/zaloflow-updates/releases/latest/download/ZaloFlow_Pro_Windows_x64.zip"
+          class="btn btn-primary"
+          onclick="notifyDownload('Windows')"
+        >
+          <span>Tải về cho Windows</span>
+        </a>
+        <div class="file-note">Bản đầy đủ (.zip) • Giải nén chạy ngay</div>
+      </div>
+
+      <!-- MACOS -->
+      <div class="card" id="cardMac">
+        <div class="os-logo">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.96 6.33c.67-.81 1.12-1.94 1-3.08-.96.04-2.13.64-2.82 1.45-.61.7-.15 1.86-1.01 2.98 1.08.08 2.16-.54 2.83-1.35"/>
+          </svg>
+        </div>
+        <h2>macOS</h2>
+        <p class="card-desc">Apple Silicon (M1–M4) & Intel</p>
+        <a
+          href="https://github.com/ducminh8865-glitch/zaloflow-updates/releases/latest/download/ZaloFlow_Pro_macOS_Universal.zip"
+          class="btn btn-dark"
+          onclick="notifyDownload('macOS')"
+        >
+          <span>Tải về cho Mac</span>
+        </a>
+        <div class="file-note">macOS 12.0 trở lên (.zip)</div>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">BƯỚC 1</div>
+        <div class="step-title">Giải nén tệp tải về</div>
+        <div class="step-text">Giải nén thư mục vừa tải xuống ra màn hình Desktop.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">BƯỚC 2</div>
+        <div class="step-title">Mở ứng dụng</div>
+        <div class="step-text">Chạy tệp <strong>electron.exe</strong> (Windows) hoặc <strong>CHAY_ZALOFLOW_MAC</strong> (Mac).</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">BƯỚC 3</div>
+        <div class="step-title">Nhập Key kích hoạt</div>
+        <div class="step-text">Sao chép Mã máy trên màn hình để nhận Key mở khóa bản quyền.</div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    © 2026 ZaloFlow. Tích hợp tự động cập nhật phiên bản mới trực tuyến.
+  </footer>
+
+  <div class="toast" id="dlToast">Đang tải xuống bộ cài ZaloFlow...</div>
+
+  <script>
+    (function () {
+      const ua = navigator.userAgent || navigator.platform || '';
+      if (/Macintosh|MacIntel|Mac OS/i.test(ua)) {
+        document.getElementById('cardWin').classList.remove('active-os');
+        document.getElementById('cardMac').classList.add('active-os');
+      }
+
+      fetch('./manifest.json?t=' + Date.now())
+        .then(r => (r.ok ? r.json() : null))
+        .then(d => {
+          if (d && d.version) {
+            document.getElementById('versionLabel').textContent = 'Phiên bản ' + d.version;
+          }
+        })
+        .catch(() => {});
+    })();
+
+    function notifyDownload(os) {
+      const t = document.getElementById('dlToast');
+      t.textContent = 'Đang tải xuống ZaloFlow cho ' + os + '...';
+      t.style.display = 'block';
+      setTimeout(() => {
+        t.style.display = 'none';
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
