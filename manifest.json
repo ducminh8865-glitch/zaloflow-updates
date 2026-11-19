@@ -1,8 +1,8 @@
 {
-  "version": "4.2.4",
-  "publishedAt": "2026-11-12T14:43:00.000Z",
-  "changelog": "Bản cập nhật v4.2.4: Thêm tính năng tự động thả Tim ❤️ / Like 👍 những tin nhắn người dùng nhắn mới trong các nhóm đã tham gia hoặc đã thêm link.",
+  "version": "4.2.5",
+  "publishedAt": "2026-11-19T06:40:46.024Z",
+  "changelog": "Cập nhật tính năng & tối ưu hệ thống (v4.2.5)",
   "format": "zfp1-aes256gcm",
   "filesCount": 12,
-  "bundleSha256": "fcaa41889243889757f1a5fd7241e591558b3bcb0fd15127e3eb1aa25a2410ac"
+  "bundleSha256": "6553f49b79c5907d457f0f2bf75bbbdbc01482c684e10721320c70de65da512c"
 }
